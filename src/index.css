@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Outfit, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    /* Background image */
+    background-image: url('https://images.unsplash.com/photo-1497032205916-ac775f0649ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdmllJTIwdGhlYXRlcnxlbnwwfHx8fDE2OTI4NDY5MzU&ixlib=rb-1.2.1&q=80&w=1600');
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+
+    /* Gradient animation */
+    animation: gradientAnimation 6s ease infinite;
+    background: linear-gradient(135deg, rgba(30, 30, 60, 0.8), rgba(60, 60, 120, 0.8), rgba(255, 204, 0, 0.6));
+    background-size: 300% 300%;
+    /* Change the size for a better animation effect */
+}
+
+/* Keyframes for the gradient animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
