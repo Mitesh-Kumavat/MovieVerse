@@ -3,8 +3,11 @@ import { TailSpin } from 'react-loader-spinner';
 import { addDoc } from 'firebase/firestore';
 import { moviesRef } from '../firebase/firebase.js';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom'
 
 function AddMovie() {
+
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         description: "",
         img: "",
@@ -47,6 +50,10 @@ function AddMovie() {
                         closeModal: true,
                     }
                 },
+            }).then((value) => {
+                if (value) {
+                    navigate('/'); // Redirect to homepage after clicking "Okay"
+                }
             });
         } catch (error) {
             console.log(error);
