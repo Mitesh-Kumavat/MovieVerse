@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import { addDoc } from 'firebase/firestore';
 import { moviesRef } from '../firebase/firebase.js';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
+import { AppState } from './Layout.jsx';
 
 function AddMovie() {
 
     const navigate = useNavigate();
+    const useAppState = useContext(AppState);
+
+    useEffect(() => {
+        if (!useAppState.login) {
+            navigate('/login')
+        }
+    }, [])
+
     const [form, setForm] = useState({
         description: "",
         img: "",

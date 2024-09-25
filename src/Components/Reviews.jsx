@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ReactStars from 'react-stars'
 import { reviewsRef, db, moviesRef } from '../firebase/firebase';
 import swal from 'sweetalert';
 import { addDoc, doc, updateDoc, query, where, getDocs } from 'firebase/firestore';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import { AppState } from './Layout';
 
 function Reviews({ className, id, prevRating, userRated }) {
+    const useAppState = useContext(AppState);
+
     const [rating, setRating] = useState(0);
     const [loading, setLoading] = useState(false);
     const [reviewsloading, setReviewsLoading] = useState(false);
@@ -26,7 +29,7 @@ function Reviews({ className, id, prevRating, userRated }) {
             })
 
             setReviewsLoading(false)
-        }   
+        }
         getData();
     }, [])
 
@@ -103,14 +106,28 @@ function Reviews({ className, id, prevRating, userRated }) {
 
                     <input type="text" value={thought} onChange={(e) => setThought(e.target.value)} className='max-sm:w-full w-96 rounded-lg h-10 outline-none backdrop-blur-xl bg-white/50 border shadow-lg px-3 text-black border-white/10  ' placeholder='Enter Your Review' />
 
-                    <button onClick={sendReview} className='bg-indigo-600 px-2 text-center py-2 max-sm:mt-6 lg:ml-8 rounded-lg w-60 max-sm:w-full'>
-                        {loading ?
+
+                    {useAppState.login ? <button
+                        onClick={sendReview}
+                        disabled={!thought || rating === 0}
+                        className={`bg-indigo-600 px-2 text-center py-2 max-sm:mt-6 lg:ml-8 rounded-lg w-60 max-sm:w-full ${!thought || rating === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                        {loading ? (
                             <span className='flex justify-center items-center'>
                                 <TailSpin height={20} color='white' strokeWidth={7} />
                             </span>
-                            : "Share"
-                        }
+                        ) : (
+                            "Share"
+                        )}
                     </button>
+                        :
+                        <>
+                            <button
+                                onClick={() => { navigate('/login') }}
+                                className={`bg-indigo-600 px-2 text-center py-2 max-sm:mt-6 lg:ml-8 rounded-lg w-60 max-sm:w-full `}
+                            >Log in first for review
+                            </button>
+                        </>}
 
                 </div>
                 {reviewsloading ?
