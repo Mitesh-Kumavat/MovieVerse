@@ -12,22 +12,18 @@
 }
 
 body {
-    /* Background image */
-    background-image: url('https://images.unsplash.com/photo-1497032205916-ac775f0649ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdmllJTIwdGhlYXRlcnxlbnwwfHx8fDE2OTI4NDY5MzU&ixlib=rb-1.2.1&q=80&w=1600');
-    backdrop-filter: blur(5px);
+
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     color: white;
-
-    /* Gradient animation */
     animation: gradientAnimation 6s ease infinite;
-    background: linear-gradient(135deg, rgba(30, 30, 60, 0.8), rgba(60, 60, 120, 0.8), rgba(255, 204, 0, 0.6));
-    background-size: 300% 300%;
-    /* Change the size for a better animation effect */
+    /* background: linear-gradient(225deg, rgba(30, 30, 60, 0.8), rgba(60, 60, 120, 0.8), rgba(171, 152, 238, 0.7)); */
+    background: linear-gradient(225deg, rgba(190, 205, 240, 0.9), rgba(160, 170, 220, 0.85), rgba(150, 135, 230, 0.75));
+
+    background-size: 500% 500%;
 }
 
-/* Keyframes for the gradient animation */
 @keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;

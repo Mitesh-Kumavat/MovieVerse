@@ -11,8 +11,8 @@ function Footer() {
                         </span>
                     </div>
 
-                    <p className="mt-4 text-center text-sm text-gray-500 lg:mt-0 lg:text-right">
-                        Copyright &copy; 2024 | Mitesh-Kumavat.
+                    <p className="mt-4 text-center text-sm text-black lg:mt-0 lg:text-right">
+                        Copyright &copy; 2024 | Mitesh Kumavat
                     </p>
                 </div>
             </div>
