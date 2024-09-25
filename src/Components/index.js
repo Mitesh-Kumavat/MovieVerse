@@ -5,9 +5,13 @@ import AddMovie from "./AddMovie";
 import Detail from "./Detail";
 import Error from "./Error";
 import Reviews from "./Reviews";
+import Login from "./Login";
+import Signup from "./Signup";
 
 
 export {
+    Signup,
+    Login,
     Reviews,
     Error,
     Header,

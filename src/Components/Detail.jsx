@@ -39,7 +39,7 @@ function Detail() {
             <div className='flex max-sm:flex-col max-md:flex-col max-lg:flex-col p-8'>
 
                 <div className='max-sm:flex-col flex mt-4 justify-start max-lg:justify-center px-8 lg:ml-9 p-4'>
-                    <img src={data.img} className=' max-h-96 rounded-xl shadow-slate-600 shadow-2xl lg:sticky lg:top-28 max-sm:h-[24rem] max-sm:mx-auto' alt="" />
+                    <img src={data.img} className=' max-h-96 rounded-xl shadow-slate-600 shadow-2xl lg:sticky lg:top-28 max-sm:h-[20rem] max-sm:mx-auto' alt="" />
                 </div>
 
                 <div className="w-full lg:mt-12 p-8 lg:ml-12  lg:max-w-[55vw]">

@@ -26,7 +26,7 @@ function Reviews({ className, id, prevRating, userRated }) {
             })
 
             setReviewsLoading(false)
-        }
+        }   
         getData();
     }, [])
 
