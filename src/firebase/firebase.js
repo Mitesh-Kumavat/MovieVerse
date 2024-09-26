@@ -2,14 +2,15 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
 import { collection } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth';
+// import firebase from '/firebase/compat/app';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB4Kti29UAhMzTPwyp_thFkmDgaKdLIIkw",
-    authDomain: "movieverse-360ad.firebaseapp.com",
-    projectId: "movieverse-360ad",
-    storageBucket: "movieverse-360ad.appspot.com",
-    messagingSenderId: "510157505254",
-    appId: "1:510157505254:web:1b0dbfff6fa0011e5ef127",
+    apiKey: String(import.meta.env.VITE_API_KEY),
+    authDomain: String(import.meta.env.VITE_AUTH_DOMAIN),
+    projectId: String(import.meta.env.VITE_PROJECT_ID),
+    storageBucket: String(import.meta.env.VITE_STORAGE_BUCKET_ID),
+    messagingSenderId: String(import.meta.env.VITE_MESSAGING_SENDER_ID),
+    appId: String(import.meta.env.VITE_APP_ID),
 };
 
 const app = initializeApp(firebaseConfig);

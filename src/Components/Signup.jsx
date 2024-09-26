@@ -1,5 +1,5 @@
 import brcypt from 'bcryptjs'
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import { getAuth, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
@@ -7,6 +7,8 @@ import app from '../firebase/firebase';
 import swal from 'sweetalert';
 import { usersRef } from '../firebase/firebase';
 import { addDoc } from 'firebase/firestore';
+// import { firebase } from 'firebase/app';
+// import 'firebase/auth';
 
 function Signup() {
   const [loading, setLoading] = useState(false);
@@ -19,15 +21,16 @@ function Signup() {
   const [OTP, setOTP] = useState("");
   const auth = getAuth(app);
   const navigate = useNavigate();
+  const captchaRef = useRef(null);
+  const [verification, setVerification] = useState();
 
   const generateRecaptcha = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
       'size': 'invisible',
-      'callback': (response) => {
-        console.log("reCAPTCHA SOLVED ", response);
-      }
     });
+    window.recaptchaVerifier.render();
   };
+
 
   const verifyOTP = () => {
     setLoading(true);
@@ -64,8 +67,6 @@ function Signup() {
     });
   };
 
-
-  //Working
   const uploadData = async () => {
     try {
       var salt = brcypt.genSaltSync(10);
@@ -81,17 +82,18 @@ function Signup() {
     }
   };
 
-  //Working
-  const reqOTP = (e) => {
+  const reqOTP = async (e) => {
     e.preventDefault();
     setLoading(true);
     generateRecaptcha();
     const appVerifier = window.recaptchaVerifier;
 
-    signInWithPhoneNumber(auth, `+91${form.mobile}`, appVerifier)
-      .then((confirmationResult) => {
-        console.log("OTP sent successfully.");
+    await signInWithPhoneNumber(auth, `+91${form.mobile}`, appVerifier)
+      .then(confirmationResult => {
         window.confirmationResult = confirmationResult;
+        console.log(confirmationResult);
+        setVerification(confirmationResult.verificationId);
+        console.log("OTP sent successfully.");
         swal({
           title: `OTP Sent to ${form.mobile}`,
           text: 'Check your OTP on your Phone Number!',
@@ -106,6 +108,7 @@ function Signup() {
         setOtpSent(true);
       })
       .catch((error) => {
+        console.error("Error Code:", error.code);
         console.error("Error in sending OTP:", error.message);
         swal({
           title: 'OTP Not sent!',
@@ -224,7 +227,7 @@ function Signup() {
             </Link>
           </div>
         </form>
-        <div id="recaptcha-container"></div>
+        <div id="recaptcha-container" ref={captchaRef}></div>
       </div>
     )
   );
