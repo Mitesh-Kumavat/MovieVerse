@@ -1,8 +1,36 @@
-# React + Vite
+# MovieVerse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**MovieVerse** is a dynamic web application built using **React**, **Tailwind CSS**, and **Firebase**. It allows users to explore a curated list of movies, offering personalized features through authentication, and secure data storage using Firebase.
 
-Currently, two official plugins are available:
+[**Explore MovieVerse Now**](https://mitesh-movieverse.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+## Features
+
+- **User Authentication**: Secure login using Firebase, with OTP verification.
+- **Responsive Design**: Tailwind CSS ensures the site is optimized for both mobile and desktop.
+- **Movie Listings**: Browse through a list of popular movies, dynamically fetched and rendered.
+- **Data Storage**: User preferences and other data are securely stored using Firebase services.
+
+---
+
+## Tech Stack
+
+- **Frontend**: React.js
+- **Styling**: Tailwind CSS
+- **Backend/Database**: Firebase (Authentication, Firestore)
+
+---
+
+## Getting Started
+
+Follow these instructions to run MovieVerse on your local machine.
+
+### Prerequisites
+
+Ensure you have the following installed on your system:
+
+- [Node.js](https://nodejs.org/) (v14+ recommended)
+- [Git](https://git-scm.com/)
+- Firebase account for authentication setup
