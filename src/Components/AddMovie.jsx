@@ -37,7 +37,9 @@ function AddMovie() {
                 description: form.description,
                 img: form.img,
                 name: form.name,
-                year: form.year
+                year: form.year,
+                rated: 0,
+                rating: 0
             });
             console.log(res);
             // Reset form fields
@@ -81,13 +83,7 @@ function AddMovie() {
                         className: 'bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded',
                         closeModal: true,
                     }
-                },
-                content: {
-                    element: "div",
-                    attributes: {
-                        className: "bg-red-100 border border-red-300 rounded-lg p-4" // Tailwind classes for the error alert content
-                    }
-                },
+                }
             });
         }
         setLoading(false);

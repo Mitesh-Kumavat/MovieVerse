@@ -19,16 +19,42 @@ function Detail() {
         rated: 0,
     })
 
+    // useEffect(() => {
+    //     async function getData() {
+    //         setLoading(true)
+    //         const _doc = doc(db, "movies", id);
+    //         const _data = await getDoc(_doc, id);
+    //         console.log(_data.data());
+    //         setData(_data.data());
+    //         setLoading(false)
+    //     }
+    //     getData();
+    // }, [])
+
     useEffect(() => {
         async function getData() {
-            setLoading(true)
+            setLoading(true);
             const _doc = doc(db, "movies", id);
-            const _data = await getDoc(_doc, id);
-            setData(_data.data());
-            setLoading(false)
+            const _data = await getDoc(_doc);
+
+            if (_data.exists()) {
+                // Set the data state with proper defaults
+                setData({
+                    name: _data.data().name || "",
+                    year: _data.data().year || "",
+                    description: _data.data().description || "",
+                    img: _data.data().img || "",
+                    rating: _data.data().rating || 0, // Set default to 0
+                    rated: _data.data().rated || 0,   // Set default to 0
+                });
+            } else {
+                console.log("No such document!");
+            }
+
+            setLoading(false);
         }
         getData();
-    }, [])
+    }, [id]);
 
     return (
         loading ?
@@ -39,27 +65,27 @@ function Detail() {
             <div className='flex max-sm:flex-col max-md:flex-col max-lg:flex-col p-8'>
 
                 <div className='max-sm:flex-col flex mt-4 justify-start max-lg:justify-center px-8 lg:ml-9 p-4'>
-                    <img src={data.img} className=' max-h-96 rounded-xl shadow-slate-600 shadow-2xl lg:sticky lg:top-28 max-sm:h-[20rem] max-sm:mx-auto' alt="" />
+                    <img loading='lazy' src={data.img} className=' max-h-96 rounded-xl shadow-slate-600 shadow-2xl lg:sticky lg:top-28 max-sm:h-[20rem] max-sm:mx-auto' alt="" />
                 </div>
 
                 <div className="w-full lg:mt-12 p-8 lg:ml-12  lg:max-w-[55vw]">
 
                     <div className='text-black font-bold text-4xl mb-3'>{data.name} <br />
-                        ( {data.year} )
+                        <span className='text-2xl'>( {data.year} ) </span>
                     </div>
 
                     <ReactStars
                         count={5}
                         half={true}
-                        value={data.rating / data.rated}
+                        value={Number(data.rating) / Number(data.rated)}
                         size={25}
                         edit={false} />
-
                     <div className='px-8 mt-4 pl-0 font-bold text-2xl text-black '>
                         {data.description}
                     </div>
+                    {console.log("Data has been pass through detail.jsx : ", Number(data.rating), Number(data.rated))}
+                    <Reviews id={id} prevRating={Number(data.rating)} userRated={Number(data.rated)} className='mt-8 border-white ' />
 
-                    <Reviews id={id} prevRating={data.rating} userRated={data.rated} className='mt-8 border-white ' />
                 </div>
             </div>
 

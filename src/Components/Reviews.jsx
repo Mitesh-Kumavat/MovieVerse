@@ -24,30 +24,45 @@ function Reviews({ className, id, prevRating, userRated }) {
             setReviewsLoading(true)
             let quer = query(reviewsRef, where("movieid", '==', id));
             const querySnapshot = await getDocs(quer);
+            // console.log(querySnapshot);
             querySnapshot.forEach((doc) => {
                 setData((prev) => [...prev, doc.data()])
             })
-
+            // console.log("DATA OF REVIEWS", data);
             setReviewsLoading(false)
         }
         getData();
     }, [])
 
     const sendReview = async () => {
-        setLoading(true)
+        setLoading(true);
+
         try {
-            await addDoc(reviewsRef, {
+            const numericRating = Number(rating) || 0;
+            const numericPrevRating = Number(prevRating);
+            const numericUserRated = Number(userRated);
+
+            console.log({
                 movieid: id,
-                name: 'Mitesh Kumavat',
-                rating: Number(rating),
+                name: useAppState.username,
+                rating: numericRating,
                 thought: thought,
                 timestamp: new Date().getTime(),
             });
+
+            await addDoc(reviewsRef, {
+                movieid: id,
+                name: useAppState.username || 'Anonymous',
+                rating: isNaN(numericRating) ? 0 : numericRating,
+                thought: thought || 'Nice',
+                timestamp: new Date().getTime(),
+            });
+
             const _doc = doc(db, "movies", id);
             await updateDoc(_doc, {
-                rating: Number(rating + prevRating),
-                rated: Number(userRated + 1)
-            })
+                rating: (numericPrevRating + numericRating) || 0,
+                rated: (numericUserRated + 1) || 1
+            });
 
             swal({
                 title: `Review Added`,
@@ -64,7 +79,7 @@ function Reviews({ className, id, prevRating, userRated }) {
                 },
             }).then((value) => {
                 if (value) {
-                    navigate('/'); // Redirect to homepage after clicking "Okay"
+                    // navigate('/'); // Redirect to homepage after clicking "Okay"
                 }
             });
             setThought('');
@@ -137,9 +152,9 @@ function Reviews({ className, id, prevRating, userRated }) {
                     :
                     <div className=' p-4 px-0 mt-8 '>
                         {
-                            data.map((item) => {
+                            data.map((item, idx) => {
                                 return (
-                                    <div className=' backdrop-blur-lg bg-white/50 border border-white/10 rounded-lg shadow-xl flex flex-col justify-start w-full mt-4'>
+                                    <div key={idx} className=' backdrop-blur-lg bg-white/50 border border-white/10 rounded-lg shadow-xl flex flex-col justify-start w-full mt-4'>
 
                                         <div className=' rounded-xl shadow-lg px-6 py-3 font-semibold  text-black ' key={item}>
 

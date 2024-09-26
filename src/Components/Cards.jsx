@@ -16,7 +16,7 @@ function Cards() {
             try {
                 // Assuming moviesRef is a collection reference
                 const querySnapshot = await getDocs(moviesRef);
-                console.log(querySnapshot);
+                // console.log(querySnapshot);
 
                 const myData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 setData(myData);
@@ -36,8 +36,8 @@ function Cards() {
                     {
                         data.map((item, idx) => {
                             return (
-                                <div key={idx} onClick={() => navigate(`/detail/${item.id}`)} className='mx-3 sm:mx-6 max-sm:text-sm max-sm:font-normal text-lg font-medium p-2 transition-all duration-200 bg-[#3b3b3b] hover:scale-105 max-sm:mx-auto max-sm:my-3  cursor-pointer md:mt-0 mb-8  bg-white/30 border border-white/10 rounded-xl shadow-lg'>
-                                    <img className='h-72 max-sm:h-[12rem] max-sm:w-[9rem] rounded-lg' src={item.img} alt="Movie Thumbnail" />
+                                <div key={idx} onClick={() => navigate(`/detail/${item.id}`)} className='mx-3 sm:mx-6 max-sm:text-sm max-sm:font-normal text-lg font-medium p-2 transition-all duration-200  hover:scale-105 max-sm:mx-auto max-sm:my-3  cursor-pointer md:mt-0 mb-8  bg-white/30 border border-white/10 rounded-xl shadow-lg'>
+                                    <img loading='lazy' className='h-72 w-[13rem] max-sm:h-[12rem] max-sm:w-[9rem] rounded-lg' src={item.img} alt="Movie Thumbnail" />
 
                                     <h1 className='text-start mt-3 max-w-48 max-sm:max-w-32 overflow-x-hidden'>
                                         <span className='text-black font-bold'>Name: </span>
