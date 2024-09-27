@@ -116,12 +116,17 @@ function Reviews({ className, id, prevRating, userRated }) {
                         type="text"
                         value={thought}
                         onChange={(e) => setThought(e.target.value)}
-                        className='max-sm:w-full w-96 rounded-lg h-10 outline-none backdrop-blur-xl bg-white/50 border shadow-lg px-3 text-black border-white/10'
+                        className='max-sm:w-full w-96 rounded-lg h-10 outline-none backdrop-blur-xl bg-white/10 border shadow-lg px-3 text-white border-white/10'
                         placeholder='Enter Your Review'
                     />
 
                     {useAppState.login ? (
                         <button
+                            type='submit'
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                sendReview();
+                            }}
                             onClick={sendReview}
                             disabled={!thought || rating === 0}
                             className={`bg-indigo-600 px-2 text-center py-2 max-sm:mt-6 lg:ml-8 rounded-lg w-60 max-sm:w-full ${!thought || rating === 0 ? 'opacity-50 cursor-not-allowed' : ''}`} >
@@ -153,10 +158,10 @@ function Reviews({ className, id, prevRating, userRated }) {
                     <div className='p-4 px-0 mt-8'>
                         {data.map((item, idx) => (
                             <div key={idx} className='backdrop-blur-lg bg-white/50 border border-white/10 rounded-lg shadow-xl flex flex-col justify-start w-full mt-4'>
-                                <div className='rounded-xl shadow-lg px-6 py-3 font-semibold text-black'>
+                                <div className='rounded-xl shadow-lg px-6 py-3 font-semibold text-gray-800'>
                                     <div className='flex justify-between items-center'>
-                                        <div className='text-2xl font-bold text-black'>
-                                            {item.name}
+                                        <div className='text-2xl sm:text-xl font-bold text-indigo-600'>
+                                            {String(item.name).toLowerCase()}
                                         </div>
                                         <div className='text-sm font-bold text-black ml-5'>
                                             {new Date(item.timestamp).toLocaleDateString()}
@@ -168,7 +173,7 @@ function Reviews({ className, id, prevRating, userRated }) {
                                         edit={false}
                                         half={true}
                                         color1='black'
-                                        color2='blue'
+                                        color2='yellow'
                                         value={item.rating}
                                         className='mb-3'
                                     />

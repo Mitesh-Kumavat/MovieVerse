@@ -19,7 +19,9 @@ body::-webkit-scrollbar {
 
 body {
     color: rgb(255, 255, 255);
-    background-color: #707070;
+    animation: gradientAnimation 20s infinite;
+    background: linear-gradient(to right, #485563, #29232c);
+    background-size: 200% 200%;
 }
 
 @keyframes gradientAnimation {

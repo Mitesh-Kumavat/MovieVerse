@@ -67,7 +67,7 @@ function Detail() {
                         value={Number(data.rating) / Number(data.rated)}
                         size={25}
                         edit={false} />
-                    <div className='px-8 mt-4 pl-0 font-bold text-2xl text-black '>
+                    <div className='px-8 mt-4 pl-0 font-bold  lg:text-2xl max-sm:text-xl  text-2xl text-gray-300 '>
                         {data.description}
                     </div>
                     <Reviews id={id} prevRating={Number(data.rating)} userRated={Number(data.rated)} className='mt-8 border-white ' />
