@@ -14,9 +14,7 @@ function Cards() {
         async function getData() {
             setLoading(true);
             try {
-                // Assuming moviesRef is a collection reference
                 const querySnapshot = await getDocs(moviesRef);
-                // console.log(querySnapshot);
 
                 const myData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 setData(myData);

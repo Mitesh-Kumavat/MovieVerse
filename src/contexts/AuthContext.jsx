@@ -34,16 +34,15 @@ export const AuthProvider = ({ children }) => {
     const auth = getAuth();
 
     useEffect(() => {
-        // Set persistence to local storage
         setPersistence(auth, browserLocalPersistence)
             .then(() => {
-                // Set up the authentication state observer
+
                 const unsubscribe = onAuthStateChanged(auth, (user) => {
                     setUser(user);
                     console.log(user ? "User signed in:" : "User signed out:", user);
                 });
 
-                return () => unsubscribe(); // Cleanup on unmount
+                return () => unsubscribe();
             })
             .catch((error) => {
                 console.error("Error setting persistence:", error);
