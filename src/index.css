@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
     padding: 0;
     margin: 0;
@@ -11,29 +10,13 @@
     font-family: Outfit, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-
-
 body::-webkit-scrollbar {
     display: none;
 }
 
 body {
-    color: rgb(255, 255, 255);
-    animation: gradientAnimation 20s infinite;
-    background: linear-gradient(to right, #485563, #29232c);
-    background-size: 200% 200%;
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    color: rgb(234, 234, 234);
+    background-color: #121212;
+    background-image: none;
+    background-size: auto;
 }

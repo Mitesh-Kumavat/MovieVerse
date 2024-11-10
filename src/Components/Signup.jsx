@@ -82,10 +82,11 @@ function Signup() {
     }
   };
 
+
   return (
-    <div className="my-16 max-w-screen-md max-sm:max-w-xs border-red-400 mx-auto max-sm:pb-8 px-4 py-8 pb-16 sm:px-6 lg:px-8 backdrop-blur-lg bg-white/10 border border-white/10 rounded-xl shadow-lg">
+    <div className="my-16 max-w-screen-md max-sm:max-w-xs mx-auto max-sm:pb-8 px-4 py-8 pb-16 sm:px-6 lg:px-8 bg-[#121212] border border-[#333333] rounded-xl shadow-lg">
       <div className="mx-auto max-w-lg text-center">
-        <h1 className="text-2xl font-bold sm:text-3xl">Sign up</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl text-[#EAEAEA]">Sign up</h1>
       </div>
       <form className="mx-auto mb-0 mt-8 max-w-md max-sm:max-w-80 space-y-4" onSubmit={handleSignup}>
         <div>
@@ -95,7 +96,7 @@ function Signup() {
               value={form.username}
               onChange={(e) => setForm({ ...form, username: e.target.value })}
               required
-              className="text-black font-bold w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+              className="w-full text-[#EAEAEA] font-bold rounded-lg border-[#333333] bg-[#2C2C2C] p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter your username"
             />
           </div>
@@ -108,7 +109,7 @@ function Signup() {
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
               type="email"
-              className="text-black font-bold w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+              className="w-full text-[#EAEAEA] font-bold rounded-lg border-[#333333] bg-[#2C2C2C] p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter your email"
             />
           </div>
@@ -121,13 +122,13 @@ function Signup() {
               onChange={(e) => setForm({ ...form, password: e.target.value })}
               required
               type={showPassword ? "text" : "password"} // Toggle input type
-              className="w-full text-black font-bold rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+              className="w-full text-[#EAEAEA] font-bold rounded-lg border-[#333333] bg-[#2C2C2C] p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter Password"
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              className="absolute right-3 top-3 text-gray-500 focus:outline-none transition-transform duration-300 ease-in-out"
+              className="absolute right-3 top-3 text-[#B0B0B0] focus:outline-none transition-transform duration-300 ease-in-out"
             >
               {showPassword ? (
                 <i className="fas fa-eye-slash transition-opacity duration-300 ease-in-out"></i> // Hide icon
@@ -140,20 +141,27 @@ function Signup() {
         <div className="flex items-center w-full justify-center">
           <button
             type="submit"
-            className={`rounded-lg w-full text-center bg-indigo-600 px-5 py-3 text-sm font-medium text-white`}
+            className="rounded-lg w-full text-center bg-white hover:bg-gray-400 px-5 py-3 text-sm font-medium text-black"
           >
-            {loading ? <span className='w-full flex justify-center'><TailSpin height={25} strokeWidth={7} color='white' /></span> : "Sign up"}
+            {loading ? (
+              <span className="w-full flex justify-center">
+                <TailSpin height={25} strokeWidth={7} color="white" />
+              </span>
+            ) : (
+              "Sign up"
+            )}
           </button>
         </div>
-        <div className='flex items-center justify-center'>
-          <div className='text-black'>Already have an account?</div>
+        <div className="flex items-center justify-center">
+          <div className="text-[#B0B0B0]">Already have an account?</div>
           <Link to={'/login'}>
-            <div className='text-blue-600 cursor-pointer underline ml-2'>Log in</div>
+            <div className="text-zinc-100 cursor-pointer underline ml-2">Log in</div>
           </Link>
         </div>
       </form>
     </div>
   );
+
 }
 
 export default Signup;

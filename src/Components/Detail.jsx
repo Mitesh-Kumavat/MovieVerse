@@ -44,38 +44,51 @@ function Detail() {
     }, [id]);
 
     return (
-        loading ?
-            <div className='w-[100vw] h-[80vh] flex justify-center items-center'>
+        loading ? (
+            <div className='w-[100vw] h-[80vh] flex justify-center items-center bg-[#121212]'>
                 <ThreeDots color='white' width={385} strokeWidth={2} height={20} />
-            </div> :
-
-            <div className='flex max-sm:flex-col max-md:flex-col max-lg:flex-col lg:p-8 md:p-4'>
-
-                <div className='max-sm:flex-col flex mt-4 justify-start max-lg:justify-center px-8 lg:ml-9 p-4'>
-                    <img loading='lazy' src={data.img} className=' max-h-96 rounded-xl shadow-slate-600 shadow-2xl lg:sticky lg:top-28 max-sm:h-[20rem] max-sm:mx-auto' alt="" />
-                </div>
-
-                <div className="w-full lg:mt-0 p-8 lg:ml-12  lg:max-w-[55vw]">
-
-                    <div className='text-black font-bold text-4xl mb-3'>{data.name} <br />
-                        <span className='text-2xl'>( {data.year} ) </span>
-                    </div>
-
-                    <ReactStars
-                        count={5}
-                        half={true}
-                        value={Number(data.rating) / Number(data.rated)}
-                        size={25}
-                        edit={false} />
-                    <div className='px-8 mt-4 pl-0 font-bold  lg:text-2xl max-sm:text-xl  text-2xl text-gray-300 '>
-                        {data.description}
-                    </div>
-                    <Reviews id={id} prevRating={Number(data.rating)} userRated={Number(data.rated)} className='mt-8 border-white ' />
-
-                </div>
             </div>
+        ) :
+            (
+                <div className='flex max-sm:flex-col max-md:flex-col max-lg:flex-col lg:p-8 md:p-4 bg-[#121212]'>
 
-    )
+                    <div className='max-sm:flex-col flex mt-4 justify-start max-lg:justify-center px-8 lg:ml-9 p-4'>
+                        <img
+                            loading='lazy'
+                            src={data.img}
+                            className='max-h-96 rounded-xl shadow-[#333333]  lg:sticky lg:top-28 max-sm:h-[20rem] max-sm:mx-auto'
+                            alt=""
+                        />
+                    </div>
+
+                    <div className="w-full lg:mt-0 p-8 lg:ml-12 lg:max-w-[55vw]">
+
+                        <div className='text-[#EAEAEA] font-bold text-4xl mb-3'>
+                            {data.name} <br />
+                            <span className='text-2xl'>({data.year})</span>
+                        </div>
+
+                        <ReactStars
+                            count={5}
+                            half={true}
+                            value={Number(data.rating) / Number(data.rated)}
+                            size={25}
+                            edit={false}
+                            color1='#555555'
+                            color2='white'
+                        />
+
+                        <div className='px-8 mt-4 pl-0 font-bold lg:text-2xl max-sm:text-xl text-[#B0B0B0]'>
+                            {data.description}
+                        </div>
+
+                        <Reviews id={id} prevRating={Number(data.rating)} userRated={Number(data.rated)} className='mt-8 border-[#333333]' />
+
+                    </div>
+                </div>
+            )
+    );
+
 }
 
 export default Detail

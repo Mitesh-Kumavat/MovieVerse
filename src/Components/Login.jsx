@@ -78,9 +78,9 @@ function Login() {
     };
 
     return (
-        <div className="my-16 max-w-screen-md max-sm:max-w-xs mx-auto px-4 py-8 pb-16 sm:px-6 lg:px-8 backdrop-blur-lg bg-white/10 border border-white/10 rounded-xl shadow-lg">
+        <div className="my-16 max-w-screen-md max-sm:max-w-xs mx-auto px-4 py-8 pb-16 sm:px-6 lg:px-8 bg-[#121212] border border-[#333333] rounded-xl shadow-lg">
             <div className="mx-auto max-w-lg text-center">
-                <h1 className="text-2xl font-bold sm:text-3xl">Log in</h1>
+                <h1 className="text-2xl font-bold sm:text-3xl text-[#EAEAEA]">Log in</h1>
             </div>
 
             <form className="mx-auto mb-0 mt-8 max-w-md space-y-4">
@@ -93,12 +93,13 @@ function Login() {
                             onChange={(e) => setForm({ ...form, email: e.target.value })}
                             type="email"
                             required
-                            className="text-black font-bold w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm"
+                            className="text-[#EAEAEA] font-bold w-full rounded-lg border-[#333333] bg-[#2C2C2C] p-4 text-sm shadow-sm"
                             placeholder="Enter your Email"
                         />
                     </div>
                 </div>
 
+                {/* Password Input */}
                 <div>
                     <label htmlFor="password" className="sr-only">Password</label>
                     <div className="relative">
@@ -107,18 +108,18 @@ function Login() {
                             onChange={(e) => setForm({ ...form, password: e.target.value })}
                             required
                             type={showPassword ? "text" : "password"} // Toggle input type
-                            className="w-full text-black font-bold rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            className="w-full text-[#EAEAEA] font-bold rounded-lg border-[#333333] bg-[#2C2C2C] p-4 pe-12 text-sm shadow-sm"
                             placeholder="Enter Password"
                         />
                         <button
                             type="button"
                             onClick={togglePasswordVisibility}
-                            className="absolute right-3 top-3 text-gray-500 focus:outline-none"
+                            className="absolute right-3 top-3 text-[#B0B0B0] focus:outline-none"
                         >
                             {showPassword ? (
-                                <i className="fas fa-eye-slash"></i> // Hide icon
+                                <i className="fas fa-eye-slash text-white"></i> // Hide icon
                             ) : (
-                                <i className="fas fa-eye"></i> // Show icon
+                                <i className="fas fa-eye text-white"></i> // Show icon
                             )}
                         </button>
                     </div>
@@ -135,26 +136,27 @@ function Login() {
                             e.preventDefault();
                             login();
                         }}
-                        className={`rounded-lg w-full text-center bg-indigo-600 px-5 py-3 text-sm font-medium text-white`}
+                        className={`rounded-lg w-full text-center bg-white hover:bg-gray-400 px-5 py-3 text-sm font-medium text-black`}
                     >
                         {loading ? (
-                            <span className='w-full flex justify-center'>
-                                <TailSpin height={25} strokeWidth={7} color='white' />
+                            <span className="w-full flex justify-center">
+                                <TailSpin height={25} strokeWidth={7} color="white" />
                             </span>
                         ) : "Submit"}
                     </button>
                 </div>
 
                 {/* Signup Link */}
-                <div className='flex justify-center items-center'>
-                    <div className='text-black'>Don't have an account?</div>
+                <div className="flex justify-center items-center">
+                    <div className="text-[#B0B0B0]">Don't have an account?</div>
                     <Link to={'/signup'}>
-                        <div className='text-blue-600 cursor-pointer underline ml-2'>Sign up</div>
+                        <div className="text-zinc-100 cursor-pointer underline ml-2">Sign up</div>
                     </Link>
                 </div>
             </form>
         </div>
     );
+
 }
 
 export default Login;

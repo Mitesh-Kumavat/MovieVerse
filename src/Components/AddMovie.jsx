@@ -90,9 +90,9 @@ function AddMovie() {
     }
 
     return (
-        <div className="my-16 max-w-screen-md max-sm:max-w-xs border-red-400 mx-auto max-sm:pb-8 px-4 py-8 pb-16 sm:px-6 lg:px-8 backdrop-blur-lg bg-white/10 border border-white/10 rounded-xl shadow-lg">
+        <div className="my-16 max-w-screen-md max-sm:max-w-xs mx-auto max-sm:pb-8 px-4 py-8 pb-16 sm:px-6 lg:px-8 backdrop-blur-lg bg-[#121212] border border-[#333333] rounded-xl shadow-lg">
             <div className="mx-auto max-w-lg text-center">
-                <h1 className="text-2xl font-bold sm:text-3xl">Add New Movie</h1>
+                <h1 className="text-2xl font-bold sm:text-3xl text-[#EAEAEA]">Add New Movie</h1>
             </div>
 
             <form onSubmit={addNewMovie} className="mx-auto mb-0 mt-8 max-w-md max-sm:max-w-80 space-y-4">
@@ -104,7 +104,7 @@ function AddMovie() {
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             type="text"
                             required
-                            className="text-black font-bold w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            className="text-[#EAEAEA] font-bold w-full rounded-lg border-[#333333] p-4 pe-12 text-sm shadow-sm bg-[#2C2C2C]"
                             placeholder="Enter Movie title"
                         />
                     </div>
@@ -118,7 +118,7 @@ function AddMovie() {
                             onChange={(e) => setForm({ ...form, img: e.target.value })}
                             required
                             type="text"
-                            className="w-full text-black font-bold rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            className="w-full text-[#EAEAEA] font-bold rounded-lg border-[#333333] p-4 pe-12 text-sm shadow-sm bg-[#2C2C2C]"
                             placeholder="Enter Poster link"
                         />
                     </div>
@@ -132,7 +132,7 @@ function AddMovie() {
                             onChange={(e) => setForm({ ...form, year: e.target.value })}
                             required
                             type="number"
-                            className="w-full text-black font-bold rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            className="w-full text-[#EAEAEA] font-bold rounded-lg border-[#333333] p-4 pe-12 text-sm shadow-sm bg-[#2C2C2C]"
                             placeholder="Enter Release Year"
                         />
                     </div>
@@ -145,7 +145,7 @@ function AddMovie() {
                             value={form.description}
                             onChange={(e) => setForm({ ...form, description: e.target.value })}
                             type="text"
-                            className="w-full text-black font-bold rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            className="w-full text-[#EAEAEA] font-bold rounded-lg border-[#333333] p-4 pe-12 text-sm shadow-sm bg-[#2C2C2C]"
                             placeholder="Description"
                         />
                     </div>
@@ -154,7 +154,7 @@ function AddMovie() {
                 <div className="flex items-center w-full justify-center">
                     <button
                         type="submit"
-                        className={`rounded-lg w-full text-center bg-indigo-600 px-5 py-3 text-sm font-medium text-white`}
+                        className="rounded-lg w-full text-center bg-white px-5 py-3 text-sm font-medium text-black hover:bg-gray-400"
                     >
                         {loading ? <span className='w-full flex justify-center'><TailSpin height={25} strokeWidth={7} color='white' /></span> : "Submit"}
                     </button>
@@ -162,6 +162,7 @@ function AddMovie() {
             </form>
         </div>
     );
+
 }
 
 export default AddMovie;
